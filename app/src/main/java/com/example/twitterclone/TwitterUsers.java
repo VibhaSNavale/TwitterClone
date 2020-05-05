@@ -37,9 +37,8 @@ public class TwitterUsers extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twitter_users);
 
-
         FancyToast.makeText(this, "Welcome " + ParseUser.getCurrentUser().getUsername(),
-                FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false);
+                FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
         listview = findViewById(R.id.listView);
         tUsers = new ArrayList<>();
@@ -58,23 +57,19 @@ public class TwitterUsers extends AppCompatActivity implements AdapterView.OnIte
 
                     if (objects.size() > 0 && e == null) {
 
-                        for (ParseUser user : objects) {
-                            tUsers.add(user.getUsername());
+                        for (ParseUser twitterUser : objects) {
+
+                            tUsers.add(twitterUser.getUsername());
                         }
 
                         listview.setAdapter(adapter);
 
-                        for(String twitterUser : tUsers) {
+                        for (String twitterUser : tUsers) {
 
-                            if(ParseUser.getCurrentUser().getList("fanOf") != null) {
-
+                            if (ParseUser.getCurrentUser().getList("fanOf") != null) {
                                 if (ParseUser.getCurrentUser().getList("fanOf").contains(twitterUser)) {
 
-                                    //followedUsers = followedUsers + twitterUser;
-
                                     listview.setItemChecked(tUsers.indexOf(twitterUser), true);
-
-                                    //FancyToast.makeText(TwitterUsers.this, ParseUser.getCurrentUser().getUsername() + " is following " + followedUsers + "\n", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
 
                                 }
                             }
@@ -85,8 +80,7 @@ public class TwitterUsers extends AppCompatActivity implements AdapterView.OnIte
             });
 
         } catch (Exception e) {
-            e.printStackTrace();
-
+            e.getMessage();
         }
     }
 
@@ -96,12 +90,10 @@ public class TwitterUsers extends AppCompatActivity implements AdapterView.OnIte
         getMenuInflater().inflate(R.menu.my_menu, menu);
         return super.onCreateOptionsMenu(menu);
 
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
 
         switch (item.getItemId()) {
 
@@ -121,7 +113,6 @@ public class TwitterUsers extends AppCompatActivity implements AdapterView.OnIte
 
                 Intent intent = new Intent(TwitterUsers.this, SendTweetActivity.class);
                 startActivity(intent);
-
                 break;
         }
 
@@ -150,6 +141,7 @@ public class TwitterUsers extends AppCompatActivity implements AdapterView.OnIte
 
             ParseUser.getCurrentUser().getList("fanOf").remove(tUsers.get(position));
             List currentUserFanOfList = ParseUser.getCurrentUser().getList("fanOf");
+            ParseUser.getCurrentUser().remove("fanOf");
             ParseUser.getCurrentUser().put("fanOf", currentUserFanOfList);
 
         }
