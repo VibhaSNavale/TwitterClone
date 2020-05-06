@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         setTitle("Sign Up");
+
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         //initialising UI components
         edtEnterEmail = findViewById(R.id.edtEnterEmail);
@@ -126,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-
                 break;
 
         }

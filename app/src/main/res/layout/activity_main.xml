@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CC81D4FA"
+    android:onClick="rootLayoutTapped"
     tools:context=".MainActivity">
 
     <ImageView

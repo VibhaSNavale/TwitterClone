@@ -83,8 +83,8 @@ public class SendTweetActivity extends AppCompatActivity implements View.OnClick
 
         final ArrayList<HashMap<String, String>> tweetList = new ArrayList<>();
         final SimpleAdapter adapter = new SimpleAdapter(SendTweetActivity.this, tweetList, android.R.layout.simple_list_item_2, new String[]{"tweetUsername", "tweetValue"}, new int[]{android.R.id.text1, android.R.id.text2});
-        try {
 
+        try {
             ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("MyTweet");
             parseQuery.whereContainedIn("user", ParseUser.getCurrentUser().getList("fanOf"));
             parseQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -112,6 +112,5 @@ public class SendTweetActivity extends AppCompatActivity implements View.OnClick
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
