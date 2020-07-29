@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         Intent intent = new Intent(MainActivity.this, TwitterUsers.class);
         startActivity(intent);
-        finish(); //call this method as we shouldn't allow the sign up/log in page to show when back button is clicked
+        finish(); //call this method as we shouldn't allow the sign up/log in page to be displayed/opened when back button is clicked
     }
 
 }
