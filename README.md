@@ -1,0 +1,1 @@
+This project is that of a social media application that has the basic functionalities such as logging in, signing up, logging out, following/unfollowing users, sending tweets, and viewing other user's tweets.
